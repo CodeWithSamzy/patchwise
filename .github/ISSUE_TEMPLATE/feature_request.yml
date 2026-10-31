@@ -1,0 +1,36 @@
+name: Feature request
+description: Suggest a rule, lesson, integration, or product improvement.
+title: "[Feature]: "
+labels: ["enhancement"]
+body:
+  - type: dropdown
+    id: area
+    attributes:
+      label: Area
+      options:
+        - New security rule
+        - Existing rule improvement
+        - New lesson
+        - Interface
+        - API
+        - Deployment
+        - Documentation
+    validations:
+      required: true
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem
+      description: What developer problem should Patchwise solve?
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed solution
+    validations:
+      required: true
+  - type: textarea
+    id: examples
+    attributes:
+      label: Safe examples or references

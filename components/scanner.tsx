@@ -12,6 +12,7 @@ import {
   ScanIcon,
   ShieldIcon,
 } from "@/components/icons";
+import { trackEvent } from "@/lib/analytics";
 import type {
   Finding,
   Language,
@@ -24,6 +25,8 @@ type ScannerProps = {
   initialSource: string;
   initialResult: ScanResult;
 };
+
+type ScanTrigger = "fix" | "manual" | "sample";
 
 const sampleOptions = [
   { label: "Express API", source: apiSample, language: "typescript" as const },
@@ -58,7 +61,11 @@ export function Scanner({ initialSource, initialResult }: ScannerProps) {
     [source],
   );
 
-  async function scan(nextSource = source, nextLanguage = language) {
+  async function scan(
+    nextSource = source,
+    nextLanguage = language,
+    trigger: ScanTrigger = "manual",
+  ) {
     if (!nextSource.trim()) {
       setError("Paste some code before starting a scan.");
       return;
@@ -85,6 +92,12 @@ export function Scanner({ initialSource, initialResult }: ScannerProps) {
       }
       setResult(payload);
       setActiveId(payload.findings[0]?.id ?? "");
+      trackEvent("scan_completed", {
+        finding_count: payload.summary.total,
+        language: nextLanguage,
+        security_score: payload.summary.score,
+        trigger,
+      });
     } catch (scanError) {
       setError(
         scanError instanceof Error
@@ -99,18 +112,30 @@ export function Scanner({ initialSource, initialResult }: ScannerProps) {
   function loadSample(option: (typeof sampleOptions)[number]) {
     setSource(option.source);
     setLanguage(option.language);
-    void scan(option.source, option.language);
+    trackEvent("sample_loaded", {
+      language: option.language,
+      sample: option.label,
+    });
+    void scan(option.source, option.language, "sample");
   }
 
   function applyFix(finding: Finding) {
     if (!finding.fix) return;
+    trackEvent("verified_fix_applied", {
+      rule_id: finding.ruleId,
+      severity: finding.severity,
+    });
     setSource(finding.fix.code);
-    void scan(finding.fix.code, language);
+    void scan(finding.fix.code, language, "fix");
   }
 
   async function copyFix() {
     if (!activeFinding?.fix) return;
     await navigator.clipboard.writeText(activeFinding.fix.code);
+    trackEvent("verified_fix_copied", {
+      rule_id: activeFinding.ruleId,
+      severity: activeFinding.severity,
+    });
     setCopied(true);
     window.setTimeout(() => setCopied(false), 1500);
   }
@@ -311,7 +336,16 @@ export function Scanner({ initialSource, initialResult }: ScannerProps) {
                         {activeFinding.remediation}
                       </p>
                       {activeFinding.fix ? (
-                        <button type="button" onClick={() => setShowFix(true)}>
+                        <button
+                          type="button"
+                          onClick={() => {
+                            setShowFix(true);
+                            trackEvent("verified_fix_viewed", {
+                              rule_id: activeFinding.ruleId,
+                              severity: activeFinding.severity,
+                            });
+                          }}
+                        >
                           View verified fix
                           <ChevronIcon width={15} height={15} />
                         </button>

@@ -42,6 +42,15 @@ The GET scan lookup uses best-effort process memory. It is useful during local d
 
 After publishing the GitHub repository, set NEXT_PUBLIC_REPOSITORY_URL to its public URL before building. This turns the Open source navigation link into a GitHub link.
 
+## Optional anonymous usage analytics
+
+Create a PostHog project, enable cookieless tracking under **Settings > Project > Web analytics**, and add these variables to the deployment:
+
+    NEXT_PUBLIC_POSTHOG_PROJECT_TOKEN=phc_your_project_token
+    NEXT_PUBLIC_POSTHOG_HOST=https://us.i.posthog.com
+
+Redeploy after adding them. Patchwise records page views and explicit product actions without autocapture, session replay, user profiles, or submitted source code. Leave the project token unset to disable analytics completely.
+
 ## Avoiding unexpected costs
 
 - Stay on the Cloudflare Workers Free plan.

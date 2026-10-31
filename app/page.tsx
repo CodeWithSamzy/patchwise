@@ -12,6 +12,7 @@ import {
   SparkIcon,
 } from "@/components/icons";
 import { Scanner } from "@/components/scanner";
+import { TrackedLink } from "@/components/tracked-link";
 import { analyzeSource } from "@/lib/analyzer";
 import { lessons } from "@/lib/lessons";
 import { apiSample } from "@/lib/samples";
@@ -34,14 +35,16 @@ export default function Home() {
           <a href="/lessons">Lessons</a>
           <a href="#coverage">Coverage</a>
         </nav>
-        <a
+        <TrackedLink
+          analyticsEvent="repository_opened"
+          analyticsProperties={{ location: "header" }}
           className="github-link"
           href={repositoryUrl ?? "#open-source"}
           aria-label={repositoryUrl ? "Patchwise on GitHub" : "Open source project"}
         >
           <GithubIcon width={18} height={18} />
           <span>{repositoryUrl ? "GitHub" : "Open source"}</span>
-        </a>
+        </TrackedLink>
       </header>
 
       <section className="hero">
@@ -62,10 +65,14 @@ export default function Home() {
             examples, and fixes that are checked before you see them.
           </p>
           <div className="hero-actions">
-            <a className="primary-cta" href="#scanner">
+            <TrackedLink
+              analyticsEvent="scanner_cta_clicked"
+              className="primary-cta"
+              href="#scanner"
+            >
               Scan your code
               <ArrowIcon width={17} height={17} />
-            </a>
+            </TrackedLink>
             <a className="text-cta" href="#how-it-works">
               See how it works
             </a>
@@ -194,10 +201,17 @@ export default function Home() {
                   <p>{lesson.summary}</p>
                   <div className="lesson-footer">
                     <span>{lesson.cwe}</span>
-                    <a href={"/lessons/" + lesson.slug}>
+                    <TrackedLink
+                      analyticsEvent="lesson_started"
+                      analyticsProperties={{
+                        lesson_slug: lesson.slug,
+                        location: "home",
+                      }}
+                      href={"/lessons/" + lesson.slug}
+                    >
                       Start lesson
                       <ArrowIcon width={15} height={15} />
-                    </a>
+                    </TrackedLink>
                   </div>
                 </div>
               </article>
@@ -249,10 +263,14 @@ export default function Home() {
             </p>
           </div>
           {repositoryUrl ? (
-            <a href={repositoryUrl}>
+            <TrackedLink
+              analyticsEvent="repository_opened"
+              analyticsProperties={{ location: "open_source" }}
+              href={repositoryUrl}
+            >
               View repository
               <ArrowIcon width={16} height={16} />
-            </a>
+            </TrackedLink>
           ) : (
             <span className="repository-hint">
               Set NEXT_PUBLIC_REPOSITORY_URL after publishing

@@ -6,6 +6,7 @@ import {
   MarkIcon,
   ShieldIcon,
 } from "@/components/icons";
+import { TrackedLink } from "@/components/tracked-link";
 import { lessons } from "@/lib/lessons";
 
 export const metadata: Metadata = {
@@ -65,10 +66,17 @@ export default function LessonsPage() {
                 <li key={takeaway}>{takeaway}</li>
               ))}
             </ul>
-            <a href={"/lessons/" + lesson.slug}>
+            <TrackedLink
+              analyticsEvent="lesson_started"
+              analyticsProperties={{
+                lesson_slug: lesson.slug,
+                location: "lesson_index",
+              }}
+              href={"/lessons/" + lesson.slug}
+            >
               Start lesson
               <ArrowIcon width={16} height={16} />
-            </a>
+            </TrackedLink>
             <span className={"lesson-index-accent accent-" + (index + 1)} />
           </article>
         ))}

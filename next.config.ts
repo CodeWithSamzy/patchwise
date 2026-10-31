@@ -4,10 +4,13 @@ const nextConfig: NextConfig = {
   poweredByHeader: false,
   reactStrictMode: true,
   async headers() {
+    const posthogSource = process.env.NEXT_PUBLIC_POSTHOG_PROJECT_TOKEN
+      ? " https://*.posthog.com"
+      : "";
     const scriptPolicy =
       process.env.NODE_ENV === "development"
-        ? "script-src 'self' 'unsafe-inline' 'unsafe-eval'"
-        : "script-src 'self' 'unsafe-inline'";
+        ? "script-src 'self' 'unsafe-inline' 'unsafe-eval'" + posthogSource
+        : "script-src 'self' 'unsafe-inline'" + posthogSource;
 
     return [
       {
@@ -21,7 +24,7 @@ const nextConfig: NextConfig = {
               "style-src 'self' 'unsafe-inline'",
               "img-src 'self' data:",
               "font-src 'self'",
-              "connect-src 'self'",
+              "connect-src 'self'" + posthogSource,
               "frame-ancestors 'none'",
               "base-uri 'self'",
               "form-action 'self'",

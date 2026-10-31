@@ -15,6 +15,7 @@ Patchwise has no required paid dependency.
 | CI | GitHub Actions standard runners for a public repository | Free |
 | Security scanning | GitHub CodeQL for a public repository | Free |
 | Optional hosting | Cloudflare Workers Free plan | Free within published limits |
+| Optional usage analytics | PostHog cookieless analytics | Free within published limits |
 
 ## What is intentionally absent
 
@@ -22,6 +23,7 @@ Patchwise has no required paid dependency.
 - No Redis requirement. Scans are synchronous.
 - No paid database requirement. The current store is ephemeral and in memory.
 - No authentication provider. The anonymous scanner does not require accounts.
+- No required analytics service. PostHog tracking is optional and disabled without environment configuration.
 - No purchased domain. A free provider subdomain is enough.
 
 ## Zero-cost deployment model

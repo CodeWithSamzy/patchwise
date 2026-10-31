@@ -21,6 +21,7 @@ Patchwise is an interactive JavaScript and TypeScript security scanner built for
 - In-memory scan lookup with a 30-minute TTL and no durable database storage.
 - Responsive scanner interface with JavaScript and TypeScript samples.
 - Request validation, security headers, input limits, and scan rate limiting.
+- Optional cookieless analytics for anonymous visits and product actions.
 - Public-repository CI, CodeQL configuration, Dependabot, rule fixtures, and API integration tests.
 
 Patchwise analyzes text only. It never executes submitted code or sends it to an external model.
@@ -38,9 +39,24 @@ The application has no required paid service:
 | CI and security analysis | GitHub Actions and CodeQL for public repositories |
 | Public hosting | Vercel Hobby or Cloudflare Workers Free plan |
 | AI or LLM | None required |
+| Usage analytics | Optional PostHog cookieless analytics |
 | Database, Redis, queue, authentication | None required |
 
 All required source dependencies use open-source licenses. See docs/FREE_STACK.md for the detailed breakdown.
+
+## Anonymous usage analytics
+
+Patchwise can optionally use PostHog to count anonymous visitors, page views, referrers, completed scans, sample usage, lesson starts, repository visits, and verified-fix actions.
+
+Analytics is disabled unless `NEXT_PUBLIC_POSTHOG_PROJECT_TOKEN` is set. The integration disables autocapture, session recording, heatmaps, exception capture, and person profiles. Submitted source code, finding excerpts, fix code, clipboard contents, and error messages are never included in analytics events.
+
+To enable it:
+
+1. Create a PostHog project and enable **Settings > Project > Web analytics > Cookieless tracking**.
+2. Add `NEXT_PUBLIC_POSTHOG_PROJECT_TOKEN` and `NEXT_PUBLIC_POSTHOG_HOST` to the deployment environment.
+3. Redeploy Patchwise.
+
+Use PostHog Web Analytics for visitors, page views, paths, and referrers. Use Product Analytics to count events such as `scan_completed`, `lesson_started`, and `verified_fix_applied`.
 
 ## Run locally
 

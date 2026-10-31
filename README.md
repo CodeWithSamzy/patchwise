@@ -10,6 +10,8 @@
 
 Patchwise is an interactive JavaScript and TypeScript security scanner built for learning. Paste code, review deterministic findings, understand how each issue can be abused, and apply a fix that Patchwise re-scans before presenting as verified.
 
+**Live application:** https://patchwise-eight.vercel.app
+
 ## What works today
 
 - Nine static-analysis rules: SQL injection, cross-site scripting, command injection, path traversal, hardcoded secrets, weak hashing, unsafe JWT verification, open redirects, and permissive CORS.
@@ -34,7 +36,7 @@ The application has no required paid service:
 | Testing | Vitest |
 | Source hosting | Public GitHub repository |
 | CI and security analysis | GitHub Actions and CodeQL for public repositories |
-| Optional public hosting | Cloudflare Workers Free plan |
+| Public hosting | Vercel Hobby or Cloudflare Workers Free plan |
 | AI or LLM | None required |
 | Database, Redis, queue, authentication | None required |
 
@@ -98,7 +100,13 @@ The browser receives the completed scan directly from the POST request, so the c
 
 ## Free deployment
 
-The included OpenNext and Wrangler configuration deploys the application to Cloudflare Workers:
+Patchwise is currently deployed on Vercel:
+
+    https://patchwise-eight.vercel.app
+
+The connected GitHub repository automatically creates a new Vercel deployment after each push to main.
+
+The included OpenNext and Wrangler configuration also supports Cloudflare Workers:
 
     npm run cf:build
     npm run cf:deploy
@@ -114,6 +122,8 @@ Cloudflare authentication is required, but a paid plan, custom domain, database,
 - GitHub issue and pull-request templates are included.
 
 After publishing the repository, set NEXT_PUBLIC_REPOSITORY_URL to its public GitHub URL so the interface links to it.
+
+New contributors should start with CONTRIBUTING.md and a focused issue. Rule changes require vulnerable and fixed fixtures, while lesson contributions need only safe example code and clear takeaways.
 
 ## Known limitations
 

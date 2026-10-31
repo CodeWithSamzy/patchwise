@@ -1,5 +1,17 @@
 # Free deployment
 
+## Current Vercel deployment
+
+Patchwise is live at:
+
+    https://patchwise-eight.vercel.app
+
+The Vercel project is connected to the public GitHub repository. Every push to main triggers a production build and deployment. The project is pinned to Node.js 24.
+
+Vercel Hobby is appropriate while Patchwise remains a personal, non-commercial open-source project. If that usage changes, review the current Vercel plan terms or use the Cloudflare/self-hosted path below.
+
+## Cloudflare Workers alternative
+
 Patchwise can run on any Node.js 24 host. The repository also includes an optional Cloudflare Workers configuration so a small public deployment can use the Workers Free plan and a free workers.dev subdomain.
 
 ## Before deployment

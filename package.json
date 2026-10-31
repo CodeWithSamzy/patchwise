@@ -4,7 +4,7 @@
   "license": "MIT",
   "private": true,
   "description": "Free and open-source JavaScript and TypeScript security scanner that explains findings and verifies fixes.",
-  "homepage": "https://github.com/CodeWithSamzy/patchwise#readme",
+  "homepage": "https://patchwise-eight.vercel.app",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/CodeWithSamzy/patchwise.git"
@@ -21,7 +21,7 @@
     "education"
   ],
   "engines": {
-    "node": ">=24"
+    "node": "24.x"
   },
   "overrides": {
     "glob": "14.0.3",

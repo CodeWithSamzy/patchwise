@@ -3,6 +3,9 @@ import type { Metadata, Viewport } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
+  metadataBase: new URL(
+    process.env.NEXT_PUBLIC_APP_URL ?? "https://patchwise-eight.vercel.app",
+  ),
   applicationName: "Patchwise",
   title: "Patchwise — Understand and fix security flaws",
   description:
@@ -18,6 +21,10 @@ export const metadata: Metadata = {
       "A free, open-source JavaScript and TypeScript security scanner that teaches and verifies fixes.",
     type: "website",
     siteName: "Patchwise",
+    url: "/",
+  },
+  alternates: {
+    canonical: "/",
   },
 };
 

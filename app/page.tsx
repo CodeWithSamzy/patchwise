@@ -18,7 +18,9 @@ import { apiSample } from "@/lib/samples";
 
 export default function Home() {
   const initialResult = analyzeSource(apiSample, "typescript", "demo-scan");
-  const repositoryUrl = process.env.NEXT_PUBLIC_REPOSITORY_URL;
+  const repositoryUrl =
+    process.env.NEXT_PUBLIC_REPOSITORY_URL ??
+    "https://github.com/CodeWithSamzy/patchwise";
 
   return (
     <main>

@@ -16,13 +16,18 @@ const base = {
 
 export function MarkIcon(props: IconProps) {
   return (
-    <svg {...base} viewBox="0 0 32 32" {...props}>
+    <svg {...base} viewBox="0 0 64 64" {...props}>
       <path
-        d="M16 2.8 27 7v8.1c0 7.1-4.5 11.8-11 14.1C9.5 26.9 5 22.2 5 15.1V7l11-4.2Z"
+        d="M32 4 56 13v16c0 14.7-9.4 24.4-24 30C17.4 53.4 8 43.7 8 29V13L32 4Z"
         fill="currentColor"
         stroke="none"
       />
-      <path d="m10.6 16.2 3.2 3.2 7.8-8.2" stroke="white" strokeWidth="2.4" />
+      <path
+        d="M22 46V18h12.2C41.7 18 46 22 46 28.1S41.7 38 34.2 38H29v8h-7Zm7-14.2h5c3.3 0 5.1-1.3 5.1-3.7s-1.8-3.8-5.1-3.8h-5v7.5Z"
+        fill="white"
+        stroke="none"
+      />
+      <path d="m39.5 43 3.3 3.3 6.2-7" stroke="#9FE0BC" strokeWidth="3.2" />
     </svg>
   );
 }

@@ -3,9 +3,22 @@ import type { Metadata, Viewport } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
+  applicationName: "Patchwise",
   title: "Patchwise — Understand and fix security flaws",
   description:
     "Paste JavaScript or TypeScript. Patchwise finds security problems, explains the risk, and verifies proposed fixes.",
+  category: "developer tools",
+  icons: {
+    icon: "/patchwise-mark.svg",
+    shortcut: "/patchwise-mark.svg",
+  },
+  openGraph: {
+    title: "Patchwise — Understand and fix security flaws",
+    description:
+      "A free, open-source JavaScript and TypeScript security scanner that teaches and verifies fixes.",
+    type: "website",
+    siteName: "Patchwise",
+  },
 };
 
 export const viewport: Viewport = {

@@ -1,5 +1,13 @@
 # Patchwise
 
+<p align="center">
+  <img src="./public/patchwise-wordmark.svg" alt="Patchwise" width="330">
+</p>
+
+[![CI](https://github.com/CodeWithSamzy/patchwise/actions/workflows/ci.yml/badge.svg)](https://github.com/CodeWithSamzy/patchwise/actions/workflows/ci.yml)
+[![CodeQL](https://github.com/CodeWithSamzy/patchwise/actions/workflows/codeql.yml/badge.svg)](https://github.com/CodeWithSamzy/patchwise/actions/workflows/codeql.yml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-1f6b4f.svg)](LICENSE)
+
 Patchwise is an interactive JavaScript and TypeScript security scanner built for learning. Paste code, review deterministic findings, understand how each issue can be abused, and apply a fix that Patchwise re-scans before presenting as verified.
 
 ## What works today

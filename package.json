@@ -3,6 +3,23 @@
   "version": "0.1.0",
   "license": "MIT",
   "private": true,
+  "description": "Free and open-source JavaScript and TypeScript security scanner that explains findings and verifies fixes.",
+  "homepage": "https://github.com/CodeWithSamzy/patchwise#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CodeWithSamzy/patchwise.git"
+  },
+  "bugs": {
+    "url": "https://github.com/CodeWithSamzy/patchwise/issues"
+  },
+  "keywords": [
+    "security",
+    "static-analysis",
+    "javascript",
+    "typescript",
+    "owasp",
+    "education"
+  ],
   "engines": {
     "node": ">=24"
   },

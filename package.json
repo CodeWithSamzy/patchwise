@@ -42,8 +42,8 @@
     "cf:typegen": "wrangler types --env-interface CloudflareEnv cloudflare-env.d.ts"
   },
   "dependencies": {
-    "next": "^16.4.3",
-    "posthog-js": "^1.444.0",
+    "next": "^16.4.5",
+    "posthog-js": "^1.445.5",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
     "zod": "^4.1.0"
